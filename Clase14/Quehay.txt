@@ -1,0 +1,1 @@
+Aprendemos a usar un enrutador , creamos 2 html distintos , renderizamos con js puro . Usamos el metodo put y delete.

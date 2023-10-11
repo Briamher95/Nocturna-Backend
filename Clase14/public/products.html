@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+</head>
+
+<body>
+    <!-- aca van a ir los productos -->
+
+    <div id="products">
+
+    </div>
+
+
+
+    <script>
+        const contenedorProductsHtml = document.getElementById("products")
+        const products = []
+
+        const deleteProductById = async (productId) =>{
+            const response = await fetch("http://localhost:8080/api/products/"+ productId, {method: "DELETE"})
+            .then(res => res.json())
+            if (response.ok){
+                renderProducts(response.products)
+            }
+        }
+        const renderProducts = (products) => {
+            let resultHTML = ""
+
+            products.forEach(product => {
+                resultHTML += `
+                                <div>
+                                    <h2>${product.name}</h2>
+                                    <h3>${product.price}</h3>
+                                    <span>${product.stock}</span>
+                                    <p>${product.description}</p>
+                                    <button class = "btn-eliminar" id = "btn-eliminar-${product.id}"> Eliminar</button>
+                                    <hr>
+                                < </div>
+                `
+            })
+            contenedorProductsHtml.innerHTML = resultHTML
+
+
+            const botonesEliminar = document.querySelectorAll(".btn-eliminar")
+            for(const boton of botonesEliminar) {
+                boton.addEventListener("click",()=>{
+                    const productId = boton.id.split("-").pop()
+                    deleteProductById(productId)
+                })
+            }
+        }
+
+        const getAllProducts = () => {
+            fetch("http://localhost:8080/api/products", { method: "GET" })
+                .then((res) => res.json())
+                .then(data => {
+                    if (data.ok) {
+                        data.products.forEach(product => products.push(product))
+                        renderProducts(products)
+                    }
+                })
+
+        }
+
+        getAllProducts()
+
+    </script>
+
+
+</body>
+
+</html>

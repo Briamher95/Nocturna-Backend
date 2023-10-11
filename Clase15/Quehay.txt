@@ -1,0 +1,3 @@
+Aprendemos a usar handlebar. Su sintaxis , el res.render. A instalar Nodemon, a usar la carpeta public y sus direcciones. Como ordenar , views con la parte estatica como archivos de js y css en la carpeta public. A usar un "Manager" donde tenemos nuestras funciones y como importarlas para usarlas en nuestros endpoint. Y Como renderizar.
+
+Bastante completa esta clase

@@ -1,0 +1,3 @@
+Aca Hicimos uso de clases otra vez , vimos un metodo implementando fechas y tambien como Exportar e Importar desde otros archivos en JS.
+
+Tambien empezamos a manejar el filesystem , en la funcion Createmessage. Tambien hacemos uso del Async y Await , si queres entender mejor entra a la clase.

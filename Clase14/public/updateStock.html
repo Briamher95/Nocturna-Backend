@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form id="formularioActualizar">
+        <h2>Actualizar el stock de un producto</h2>
+        <div>
+            <label for="">Ingrese el id del producto a actualizar :</label>
+            <input type="text" name="id" placeholder="Por ejemplo 1">
+        </div>
+        <div>
+            <label for="">Ingrese el nuevo Stock del Producto:</label>
+            <input type="text" name="stock" placeholder="Por ejemplo 1">
+        </div>
+        <input type="submit" value="Actualizar">
+    </form>
+
+    <script>
+        const formulario = document.getElementById("formularioActualizar")
+        formulario.addEventListener("submit", (e) => {
+            e.preventDefault()
+            const id = formulario.id.value
+            const stock = formulario.stock.value
+            fetch("http://localhost:8080/api/products/" +id+ "/"+ stock , {
+                method: "PUT",
+            })
+                .then(res => res.json())
+                .then(data => {
+                    alert("producto Actualizado")
+                })
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,5 @@
+Aca basicamente hacemos un loggin con el metodo Post , nos enseña a tomar la informacion del bod. Tambien como funciona el "ok: true". 
+
+y a hacer un formulario mezclado con front y back.
+
+usamos el course.

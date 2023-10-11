@@ -1,0 +1,5 @@
+En esta clase nos enseña a instalar express y como armar el server a raiz de este. 
+Tambien nos da una explicacion de que es APP y su metodo get junto a su callback y direccion .
+Usamos POO en otro archivo para importarlos en el index. 
+Instalamos 
+y tambien el "ok" .
