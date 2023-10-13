@@ -1,0 +1,140 @@
+LITERAL NOS ESTA ENSEÑANDO COMO HACER UN CRUD CON MONGODB.(mongoose)
+
+
+
+Nos enseñanan mongoose. Desde como instalar la libreria , a hacer las configuraciones iniciales para conectar a la base de datos y como usarlo en paralelo con el Compass. (base de datos productos : empanadas)
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Creamos una coleccion de Empanadas y hicimos una funcion asincronica con asyn then y cach  (nos explica sus diferencias y como crearlas) 
+Tambien con try async await.
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+Tambien vimos las palabras claves:
+ .save (para guardar un doc en una coleccion) FUNCION CREARPRODUCTO
+
+ .find ({}) que encuentra y nos devuelve un producto (empanada) de la    coleccion. FUNCION OBTENERPRODUCTO
+
+.findByIdAndRemove(id): encuentra un producto por su id en la coleccion y lo elimina (nos devuelve el producto eliminado )
+(tenemos notas en el cuaderno) FUNCION ELIMINARPRODUCTOPORSUID
+
+..findByIdAndUpdate(id, { stock: stockActualizado }, { new: true }) :
+
+Sirve para actualizar el producto. Recibe como parametro el id del producto , segundo parametro como objeto el valor a actualizar , tercer parametro le pedimos que nos devuelva ese objeto actualizado con ese comando.
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Estamos sin entender desde que empizea con el try Cath , preguntarle al chatgpt masomenos en 1:35:00.  (aca abajo esta la explicacion paso por paso de cada parte del copdigo)
+
+
+
+Ahora, veamos cada parte en detalle:
+
+async (titulo, precio, descripcion, stock) => { ... }: Esto define una función asincrónica (async) llamada crearProducto que toma cuatro parámetros: titulo, precio, descripcion y stock.
+
+try { ... } catch (err) { ... }: Este es un bloque try...catch. Dentro de try, intentamos ejecutar el código y, si se produce algún error, lo manejamos en el bloque catch. En este caso, estamos manejando errores que puedan ocurrir durante la conexión a la base de datos o al guardar un producto.
+
+await mongoose.connect(URL_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true });: Este código intenta establecer una conexión a la base de datos MongoDB utilizando Mongoose. Se utiliza el valor de URL_CONNECTION que se define en otro lugar de tu código como la URL de conexión a la base de datos. Las opciones { useNewUrlParser: true, useUnifiedTopology: true } son configuraciones para la conexión que permiten un mejor manejo de la base de datos. El await se utiliza para esperar a que la conexión se complete antes de continuar con el código.
+
+console.log("Nos conectamos con MongoDB correctamente");: Si la conexión se establece con éxito, se imprime un mensaje en la consola indicando que la conexión a la base de datos se realizó correctamente.
+
+const nuevoProducto = new Producto({ titulo, precio, descripcion, stock });: Se crea un nuevo objeto nuevoProducto basado en un modelo llamado Producto. Los valores para titulo, precio, descripcion y stock se pasan como parámetros y se utilizan para inicializar este nuevo objeto.
+
+const productoNuevo = await nuevoProducto.save();: Se guarda el objeto nuevoProducto en la base de datos. El método save() realiza una inserción en la base de datos y devuelve el producto recién creado, que se almacena en la variable productoNuevo.
+
+console.log("Se guardo el producto:"); y console.log(productoNuevo);: Se imprime en la consola un mensaje indicando que el producto se ha guardado y se muestra el objeto del producto recién creado.
+
+catch (err) { console.error("No se pudo conectar con MongoDB"); }: Si ocurre un error en la conexión a la base de datos o al guardar el producto, se maneja en este bloque catch. En este caso, se imprime un mensaje de error en la consola indicando que no se pudo conectar con MongoDB.
+
+En resumen, esta función se utiliza para conectarse a una base de datos MongoDB, crear un nuevo objeto de producto a partir de los parámetros proporcionados y luego guardar ese producto en la base de datos. Si hay algún error en la conexión o en la operación de guardado, se maneja y se muestra un mensaje de error en la consola.
+
+
+
+
+User
+tambien necesito que me expliques el porque de cada palabra clave usada
+ChatGPT
+Claro, te explicaré el propósito de cada palabra clave y parte del código que se utiliza en la función crearProducto:
+
+javascript
+Copy code
+const crearProducto = async (titulo, precio, descripcion, stock) => {
+const: Se utiliza para declarar una constante llamada crearProducto. En este caso, crearProducto es una función que se asigna a esta constante.
+
+async: Esta palabra clave se utiliza para definir una función asincrónica. Permite utilizar el operador await dentro de la función, lo que indica que ciertas operaciones dentro de la función son asíncronas y pueden esperar a que se completen.
+
+(titulo, precio, descripcion, stock): Estos son los parámetros que la función crearProducto toma como entrada. Los parámetros son variables que se utilizan para pasar valores a la función cuando se llama.
+
+
+
+javascript
+Copy code
+    try {
+try: Esto inicia un bloque try, que se utiliza para envolver el código que podría generar excepciones o errores. En otras palabras, aquí se coloca el código que se intentará ejecutar.
+
+
+javascript
+Copy code
+        await mongoose.connect(URL_CONNECTION, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        });
+await: Se utiliza para indicar que el código debe esperar a que se complete la operación asincrónica. En este caso, estamos esperando a que la conexión a la base de datos se establezca antes de continuar.
+
+mongoose.connect(URL_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true }): Aquí, estamos utilizando la biblioteca Mongoose para conectarnos a la base de datos MongoDB. URL_CONNECTION es la URL de conexión a la base de datos. Las opciones { useNewUrlParser: true, useUnifiedTopology: true } son configuraciones para la conexión que permiten un mejor manejo de la base de datos.
+
+
+
+javascript
+Copy code
+        console.log("Nos conectamos con mongoDB correctamente");
+console.log("Nos conectamos con mongoDB correctamente"): Esto simplemente imprime un mensaje en la consola indicando que la conexión a MongoDB se ha realizado con éxito.
+javascript
+Copy code
+        const nuevoProducto = new Producto({ titulo, precio, descripcion, stock });
+const nuevoProducto: Se declara una variable llamada nuevoProducto para almacenar un nuevo objeto de producto que se creará.
+
+new Producto({ titulo, precio, descripcion, stock }): Aquí, se crea un nuevo objeto de tipo Producto utilizando un constructor de clase. Los valores de titulo, precio, descripcion y stock se pasan como parámetros para inicializar el objeto.
+
+
+
+javascript
+Copy code
+        const productoNuevo = await nuevoProducto.save();
+const productoNuevo: Se declara una variable llamada productoNuevo para almacenar el resultado de guardar el nuevo producto en la base de datos.
+
+await nuevoProducto.save(): Utilizando el método save(), el nuevo producto se guarda en la base de datos. El await indica que esperaremos a que se complete esta operación antes de continuar.
+
+javascript
+Copy code
+        console.log("Se guardo el producto:");
+        console.log(productoNuevo);
+console.log("Se guardo el producto:"): Imprime un mensaje en la consola indicando que el producto se ha guardado con éxito.
+
+console.log(productoNuevo): Imprime el objeto del producto recién creado en la consola para que puedas ver los detalles del producto guardado.
+
+javascript
+Copy code
+    } catch (err) {
+catch (err): Esto inicia un bloque catch, que se ejecutará si se produce una excepción o un error en el bloque try. err es la variable que almacena información sobre el error que ocurrió.
+javascript
+Copy code
+        console.error("No se pudo conectar con MongoDB");
+console.error("No se pudo conectar con MongoDB"): Imprime un mensaje de error en la consola indicando que no se pudo conectar a la base de datos MongoDB.
+En resumen, el código utiliza palabras clave como async, await, try, catch y funciones de Mongoose para realizar operaciones asincrónicas de conexión y almacenamiento en una base de datos MongoDB. Las declaraciones console.log y console.error se utilizan para mostrar mensajes informativos y de error en la consola. Las variables y constantes se utilizan para almacenar los resultados de las operaciones y datos intermedios.
